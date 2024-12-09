@@ -13,6 +13,9 @@ RUN go mod tidy
 # Copies all remaining files to the container's working directory.
 COPY . .
 
+# It ensure that the templates folder is included, even if Docker's caching interferes with COPY . ..
+COPY templates ./templates
+
 # Compiles the app into a binary named "app"
 RUN go build -o app
 
